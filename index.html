@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VISTA: A Test-Time Self-Improving Video Generation Agent</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+            color: #000000;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 60px 40px;
+            background-color: #ffffff;
+            color: #000000;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 100px;
+            height: 35px;
+            background-image: url('https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg');
+            background-size: contain;
+            background-repeat: no-repeat;
+            opacity: 1;
+            z-index: 0;
+        }
+        .header::after {
+            content: '';
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background-image: url('https://upload.wikimedia.org/wikipedia/en/thumb/b/b9/NUS_coat_of_arms.svg/1200px-NUS_coat_of_arms.svg.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            opacity: 1;
+            z-index: 0;
+        }
+        .header > * {
+            position: relative;
+            z-index: 1;
+        }
+        .title {
+            font-size: 2.5em;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .authors {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+        .affiliations {
+            font-size: 1em;
+            opacity: 0.8;
+        }
+        .logos {
+            margin: 20px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+        }
+        .logo {
+            height: 40px;
+        }
+        .badges {
+            margin: 20px 0;
+        }
+        .badge {
+            display: inline-block;
+            padding: 8px 16px;
+            margin: 5px;
+            background-color: #000000;
+            color: white;
+            text-decoration: none;
+            border-radius: 20px;
+            font-size: 0.9em;
+        }
+        .badge:hover {
+            background-color: #333333;
+        }
+        .abstract {
+            background-color: #f8f9fa;
+            padding: 30px;
+            border-radius: 10px;
+            margin: 30px 0;
+            border-left: 5px solid #1f77b4;
+        }
+        .abstract h2 {
+            color: #333;
+            margin-top: 0;
+        }
+        .video-section {
+            margin: 40px 0;
+        }
+        .video-grid {
+            display: grid;
+            grid-template-columns: 1fr 5px 1fr 40px 1fr 5px 1fr;
+            grid-template-rows: auto auto auto;
+            margin: 20px 0;
+        }
+        .video-item {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .video-item:nth-child(1) { grid-column: 1; grid-row: 1; }
+        .video-item:nth-child(2) { grid-column: 3; grid-row: 1; }
+        .video-item:nth-child(3) { grid-column: 5; grid-row: 1; }
+        .video-item:nth-child(4) { grid-column: 7; grid-row: 1; }
+        .video-item:nth-child(5) { grid-column: 1; grid-row: 2; }
+        .video-item:nth-child(6) { grid-column: 3; grid-row: 2; }
+        .video-item:nth-child(7) { grid-column: 5; grid-row: 2; }
+        .video-item:nth-child(8) { grid-column: 7; grid-row: 2; }
+        .video-item:nth-child(9) { grid-column: 1; grid-row: 3; }
+        .video-item:nth-child(10) { grid-column: 3; grid-row: 3; }
+        .video-item:nth-child(11) { grid-column: 5; grid-row: 3; }
+        .video-item:nth-child(12) { grid-column: 7; grid-row: 3; }
+        .video-item video {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+        .video-caption {
+            padding: 10px;
+            font-size: 0.8em;
+            color: #666;
+        }
+        .video-item {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .video-item video {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .video-caption {
+            padding: 15px;
+            font-size: 0.9em;
+            color: #666;
+        }
+        .citation {
+            background-color: #f1f1f1;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 0.9em;
+            margin: 30px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="title">VISTA: A Test-Time Self-Improving Video Generation Agent</div>
+            <div class="authors">
+                <a href="https://dxlong2000.github.io/" style="color: #0066cc; text-decoration: underline;">Do Xuan Long</a><sup>1,2*</sup>, 
+                <a href="https://xingchen.one/" style="color: #0066cc; text-decoration: underline;">Xingchen Wan</a><sup>1</sup>, 
+                <a href="https://scholar.google.com/citations?user=Bk-fDi0AAAAJ&hl=en" style="color: #0066cc; text-decoration: underline;">Hootan Nakhost</a><sup>1</sup>, 
+                <a href="https://chl260.github.io/" style="color: #0066cc; text-decoration: underline;">Chen-Yu Lee</a><sup>1</sup>, 
+                <a href="https://tomas.pfister.fi/" style="color: #0066cc; text-decoration: underline;">Tomas Pfister</a><sup>1</sup>, 
+                <a href="https://www.sercanarik.com/" style="color: #0066cc; text-decoration: underline;">Sercan Ö. Arık</a><sup>1</sup>
+            </div>
+            <div class="affiliations">
+                <sup>1</sup>Google &nbsp;&nbsp; <sup>2</sup>National University of Singapore<br>
+                <small style="margin-top: 10px; display: block; opacity: 0.8;">
+                    * This work was done while Do Xuan Long was a Student Researcher at Google.
+                </small>
+                <div style="margin-top: 15px; font-size: 0.9em;">
+                    📧 Contact: 
+                    <a href="mailto:xuanlong.do@u.nus.edu" style="color: #0066cc; text-decoration: underline;">xuanlong.do@u.nus.edu</a>, 
+                    <a href="mailto:xingchenw@google.com" style="color: #0066cc; text-decoration: underline;">xingchenw@google.com</a>, 
+                    <a href="mailto:soarik@google.com" style="color: #0066cc; text-decoration: underline;">soarik@google.com</a>
+                </div>
+            </div>
+            <div class="badges">
+                <a href="https://arxiv.org/abs/dummy" class="badge">📄 Paper</a>
+                <a href="https://github.com/dummy/vista" class="badge">💾 Codes</a>
+                <a href="https://github.com/dummy/moviegen-bench" class="badge">📊 MovieGen-Bench</a>
+            </div>
+        </div>
+
+        <div class="abstract">
+            <h2>Abstract</h2>
+            <p>
+                Despite rapid advances in text-to-video synthesis, generated video quality remains critically dependent on precise user prompts. 
+                Existing test-time optimization methods, successful in other domains, struggle with the multi-faceted nature of video. 
+                To address this, we introduce <strong>VISTA</strong>, a novel multi-agent system that autonomously refines prompts to improve video generation. 
+                VISTA operates in an iterative loop, first decomposing a user's idea into a structured temporal plan. 
+                After generation, the best video is identified through a robust pairwise tournament. 
+                This winning video is then critiqued by a trio of specialized agents focusing on visual, audio, and contextual fidelity. 
+                Finally, a reasoning agent synthesizes this feedback to introspectively rewrite and enhance the prompt for the next generation cycle. 
+                To rigorously evaluate our proposed approach, we present <strong>MovieGen-Bench</strong>, a new benchmark of diverse single- and multi-scene video generation tasks. 
+                Experiments show that while prior methods yield inconsistent gains, VISTA consistently improves video quality, 
+                achieving up to <strong>60% pairwise win rate</strong> against state-of-the-art baselines. 
+                Human evaluators concur, preferring VISTA's outputs in <strong>68% of comparisons</strong>.
+            </p>
+        </div>
+
+        <div class="video-section">
+            <h2>Video Results</h2>
+            <p>VISTA iteratively improves video generation through multi-agent feedback and prompt refinement compared to Direct Prompting (DP).</p>
+            
+            <div class="video-grid">
+                <div class="video-item">
+                    <video controls>
+                        <source src="videos/dp_spaceship.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="video-caption">
+                        <strong>Direct Prompting (DP):</strong> "Spaceship"
+                    </div>
+                </div>
+                
+                <div class="video-item">
+                    <video controls>
+                        <source src="videos/vista_spaceship.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="video-caption">
+                        <strong>VISTA:</strong> "Spaceship"
+                    </div>
+                </div>
+                
+                <div class="video-item">
+                    <video controls>
+                        <source src="videos/dp_beautyvlog.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="video-caption">
+                        <strong>Direct Prompting (DP):</strong> "Beauty vlog"
+                    </div>
+                </div>
+                
+                <div class="video-item">
+                    <video controls>
+                        <source src="videos/vista_beautyvlog.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="video-caption">
+                        <strong>VISTA:</strong> "Beauty vlog"
+                    </div>
+                </div>
+                
+                <div class="video-item">
+                    <video controls>
+                        <source src="videos/dp_icecream.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="video-caption">
+                        <strong>Direct Prompting (DP):</strong> "Ice cream"
+                    </div>
+                </div>
+                
+                <div class="video-item">
+                    <video controls>
+                        <source src="videos/vista_icecream.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="video-caption">
+                        <strong>VISTA:</strong> "Ice cream"
+                    </div>
+                </div>
+                
+                <div class="video-item">
+                    <video controls>
+                        <source src="videos/dp_jeffdye.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="video-caption">
+                        <strong>Direct Prompting (DP):</strong> "Jeff Dye"
+                    </div>
+                </div>
+                
+                <div class="video-item">
+                    <video controls>
+                        <source src="videos/vista_jeffdye.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="video-caption">
+                        <strong>VISTA:</strong> "Jeff Dye"
+                    </div>
+                </div>
+                
+                <div class="video-item">
+                    <video controls>
+                        <source src="videos/dp_trees.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="video-caption">
+                        <strong>Direct Prompting (DP):</strong> "Trees"
+                    </div>
+                </div>
+                
+                <div class="video-item">
+                    <video controls>
+                        <source src="videos/vista_trees.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="video-caption">
+                        <strong>VISTA:</strong> "Trees"
+                    </div>
+                </div>
+                
+                <div class="video-item">
+                    <video controls>
+                        <source src="videos/dp_sadnews.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="video-caption">
+                        <strong>Direct Prompting (DP):</strong> "Sad news"
+                    </div>
+                </div>
+                
+                <div class="video-item">
+                    <video controls>
+                        <source src="videos/vista_badcalls.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="video-caption">
+                        <strong>VISTA:</strong> "Bad calls"
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="citation">
+            <h3>Citation</h3>
+            <pre>@article{long2025vista,
+  title={VISTA: A Test-Time Self-Improving Video Generation Agent},
+  author={Long, Do Xuan and Wan, Xingchen and Nakhost, Hootan and Lee, Chen-Yu and Pfister, Tomas and Ar{\i}k, Sercan {\"O}.},
+  journal={arXiv preprint arXiv:XXXX.XXXXX},
+  year={2025}
+}</pre>
+        </div>
+    </div>
+</body>
+</html>
