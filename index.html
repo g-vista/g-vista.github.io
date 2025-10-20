@@ -23,39 +23,13 @@
         .header {
             text-align: center;
             margin-bottom: 40px;
-            padding: 60px 40px;
+            padding: 30px 40px;
             background-color: #ffffff;
             color: #000000;
             border: 2px solid #e0e0e0;
             border-radius: 10px;
             position: relative;
             overflow: hidden;
-        }
-        .header::before {
-            content: '';
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            width: 100px;
-            height: 35px;
-            background-image: url('https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg');
-            background-size: contain;
-            background-repeat: no-repeat;
-            opacity: 1;
-            z-index: 0;
-        }
-        .header::after {
-            content: '';
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            width: 50px;
-            height: 50px;
-            background-image: url('https://upload.wikimedia.org/wikipedia/en/thumb/b/b9/NUS_coat_of_arms.svg/1200px-NUS_coat_of_arms.svg.png');
-            background-size: contain;
-            background-repeat: no-repeat;
-            opacity: 1;
-            z-index: 0;
         }
         .header > * {
             position: relative;
@@ -67,11 +41,11 @@
             margin-bottom: 20px;
         }
         .authors {
-            font-size: 1.2em;
+            font-size: 1.1em;
             margin-bottom: 10px;
         }
         .affiliations {
-            font-size: 1em;
+            font-size: 0.95em;
             opacity: 0.8;
         }
         .logos {
@@ -89,16 +63,17 @@
         }
         .badge {
             display: inline-block;
-            padding: 8px 16px;
+            padding: 4px 20px;
             margin: 5px;
-            background-color: #000000;
-            color: white;
+            background-color: white;
+            color: black;
             text-decoration: none;
             border-radius: 20px;
+            border: 1px solid #ccc;
             font-size: 0.9em;
         }
         .badge:hover {
-            background-color: #333333;
+            background-color: #9ca3af;
         }
         .abstract {
             background-color: #f8f9fa;
@@ -117,7 +92,7 @@
         .video-grid {
             display: grid;
             grid-template-columns: 1fr 5px 1fr 40px 1fr 5px 1fr;
-            grid-template-rows: auto auto auto;
+            grid-template-rows: auto auto auto auto;
             margin: 20px 0;
         }
         .video-item {
@@ -138,6 +113,10 @@
         .video-item:nth-child(10) { grid-column: 3; grid-row: 3; }
         .video-item:nth-child(11) { grid-column: 5; grid-row: 3; }
         .video-item:nth-child(12) { grid-column: 7; grid-row: 3; }
+        .video-item:nth-child(13) { grid-column: 1; grid-row: 4; }
+        .video-item:nth-child(14) { grid-column: 3; grid-row: 4; }
+        .video-item:nth-child(15) { grid-column: 5; grid-row: 4; }
+        .video-item:nth-child(16) { grid-column: 7; grid-row: 4; }
         .video-item video {
             width: 100%;
             height: 150px;
@@ -146,7 +125,7 @@
         .video-caption {
             padding: 10px;
             font-size: 0.8em;
-            color: #666;
+            color: #000;
         }
         .video-item {
             background: white;
@@ -162,7 +141,7 @@
         .video-caption {
             padding: 15px;
             font-size: 0.9em;
-            color: #666;
+            color: #000;
         }
         .citation {
             background-color: #f1f1f1;
@@ -172,12 +151,62 @@
             font-size: 0.9em;
             margin: 30px 0;
         }
+        
+        /* Mobile responsive styles */
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            .header {
+                padding: 30px 20px;
+            }
+            .title {
+                font-size: 1.8em;
+            }
+            .authors {
+                font-size: 1em;
+            }
+            .affiliations {
+                font-size: 0.85em;
+            }
+            .video-grid {
+                grid-template-columns: 1fr;
+                grid-template-rows: repeat(16, auto);
+                gap: 20px;
+            }
+            .video-item:nth-child(n) {
+                grid-column: 1;
+            }
+            .video-item:nth-child(1) { grid-row: 1; }
+            .video-item:nth-child(2) { grid-row: 2; }
+            .video-item:nth-child(3) { grid-row: 3; }
+            .video-item:nth-child(4) { grid-row: 4; }
+            .video-item:nth-child(5) { grid-row: 5; }
+            .video-item:nth-child(6) { grid-row: 6; }
+            .video-item:nth-child(7) { grid-row: 7; }
+            .video-item:nth-child(8) { grid-row: 8; }
+            .video-item:nth-child(9) { grid-row: 9; }
+            .video-item:nth-child(10) { grid-row: 10; }
+            .video-item:nth-child(11) { grid-row: 11; }
+            .video-item:nth-child(12) { grid-row: 12; }
+            .video-item:nth-child(13) { grid-row: 13; }
+            .video-item:nth-child(14) { grid-row: 14; }
+            .video-item:nth-child(15) { grid-row: 15; }
+            .video-item:nth-child(16) { grid-row: 16; }
+            .logos {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .abstract {
+                padding: 20px;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <div class="title">VISTA: A Test-Time Self-Improving Video Generation Agent</div>
+            <div class="title"><i style="color: #4285f4;">VISTA</i>: A Test-Time Self-Improving Video Generation Agent</div>
             <div class="authors">
                 <a href="https://dxlong2000.github.io/" style="color: #0066cc; text-decoration: underline;">Do Xuan Long</a><sup>1,2*</sup>, 
                 <a href="https://xingchen.one/" style="color: #0066cc; text-decoration: underline;">Xingchen Wan</a><sup>1</sup>, 
@@ -187,7 +216,7 @@
                 <a href="https://www.sercanarik.com/" style="color: #0066cc; text-decoration: underline;">Sercan Ö. Arık</a><sup>1</sup>
             </div>
             <div class="affiliations">
-                <sup>1</sup>Google &nbsp;&nbsp; <sup>2</sup>National University of Singapore<br>
+                <span style="font-size: 1.3em;"><sup>1</sup><span style="color: #4285f4;">G</span><span style="color: #ea4335;">o</span><span style="color: #fbbc05;">o</span><span style="color: #4285f4;">g</span><span style="color: #34a853;">l</span><span style="color: #ea4335;">e</span> &nbsp;&nbsp; <sup>2</sup><span style="color: #003d7a;">National University of Singapore</span></span><br>
                 <small style="margin-top: 10px; display: block; opacity: 0.8;">
                     * This work was done while Do Xuan Long was a Student Researcher at Google.
                 </small>
@@ -199,165 +228,345 @@
                 </div>
             </div>
             <div class="badges">
-                <a href="https://arxiv.org/abs/dummy" class="badge">📄 Paper</a>
-                <a href="https://github.com/dummy/vista" class="badge">💾 Codes</a>
-                <a href="https://github.com/dummy/moviegen-bench" class="badge">📊 MovieGen-Bench</a>
+                <a href="https://arxiv.org/abs/2510.15831" class="badge">
+                    <img src="imgs/Arxiv.png" alt="arXiv" style="width: 16px; height: 16px; vertical-align: middle; margin-right: 4px;">
+                    arXiv
+                </a>
             </div>
         </div>
 
         <div class="abstract">
             <h2>Abstract</h2>
             <p>
-                Despite rapid advances in text-to-video synthesis, generated video quality remains critically dependent on precise user prompts. 
-                Existing test-time optimization methods, successful in other domains, struggle with the multi-faceted nature of video. 
-                To address this, we introduce <strong>VISTA</strong>, a novel multi-agent system that autonomously refines prompts to improve video generation. 
-                VISTA operates in an iterative loop, first decomposing a user's idea into a structured temporal plan. 
-                After generation, the best video is identified through a robust pairwise tournament. 
-                This winning video is then critiqued by a trio of specialized agents focusing on visual, audio, and contextual fidelity. 
-                Finally, a reasoning agent synthesizes this feedback to introspectively rewrite and enhance the prompt for the next generation cycle. 
-                To rigorously evaluate our proposed approach, we present <strong>MovieGen-Bench</strong>, a new benchmark of diverse single- and multi-scene video generation tasks. 
-                Experiments show that while prior methods yield inconsistent gains, VISTA consistently improves video quality, 
-                achieving up to <strong>60% pairwise win rate</strong> against state-of-the-art baselines. 
-                Human evaluators concur, preferring VISTA's outputs in <strong>68% of comparisons</strong>.
+                Despite rapid advances in text-to-video synthesis, generated video quality remains critically dependent
+                on precise user prompts. Existing test-time optimization methods, successful in other domains, struggle
+                with the multi-faceted nature of video. In this work, we introduce <strong>VISTA (<u>V</u>ideo <u>I</u>terative <u>S</u>elf-improvemen<u>T</u> <u>A</u>gent)</strong>, a novel multi-agent system
+                that autonomously improves video generation through refining prompts in an iterative loop. VISTA first
+                decomposes a user's idea into a structured temporal plan. After generation, the best video is identified
+                through a robust pairwise tournament. This winning video is then critiqued by a trio of specialized
+                agents focusing on visual, audio, and contextual fidelity. Finally, a reasoning agent synthesizes this
+                feedback to introspectively rewrite and enhance the prompt for the next generation cycle. Experiments
+                on single- and multi-scene video generation scenarios show that while prior methods yield inconsistent
+                gains, VISTA consistently improves video quality and alignment with user intent, achieving up to <strong>60%
+                pairwise win rate</strong> against state-of-the-art baselines. Human evaluators concur, preferring VISTA's
+                outputs in <strong>66.4% of comparisons</strong>.
             </p>
         </div>
 
         <div class="video-section">
-            <h2>Video Results</h2>
-            <p>VISTA iteratively improves video generation through multi-agent feedback and prompt refinement compared to Direct Prompting (DP).</p>
+            <h2>Overview of VISTA</h2>
+            <div style="text-align: center; margin: 20px 0;">
+                <img src="imgs/VISTA.png" alt="VISTA Overview" style="max-width: 90%; height: auto;">
+            </div>
+            <p>
+                VISTA is a modular, configurable framework for optimizing text-to-video generation. Given a user video prompt P, it produces an optimized video V* and its refined prompt P* through two phases: <strong>(i) Initialization</strong> and <strong>(ii) Self-Improvement</strong>, inspired by the human video optimization process via prompting. During (i), the prompt is parsed and planned into variants to generate candidate videos (<strong>Step 1</strong>), after which the best video-prompt pair is selected (<strong>Step 2</strong>). In (ii), the system generates multi-dimensional, multi-agent critiques (<strong>Step 3</strong>), refines the prompt (<strong>Step 4</strong>), produces new videos, and reselects the champion pair (<strong>Step 2</strong>). This phase continues until a stopping criterion is met or the maximum number of iterations is reached.
+            </p>
+        </div>
+
+        <div class="video-section">
+            <h2>Example Videos Generated by <a href="https://aistudio.google.com/models/veo-3" target="_blank" style="color: #1f77b4; text-decoration: none;">Veo 3</a></h2>
             
             <div class="video-grid">
                 <div class="video-item">
                     <video controls>
-                        <source src="videos/dp_spaceship.mp4" type="video/mp4">
+                        <source src="videos/dp_spaceship.mp4?v=1760601326" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
                     <div class="video-caption">
-                        <strong>Direct Prompting (DP):</strong> "Spaceship"
+                        <strong>Direct Prompting (Original Prompt):</strong> A spaceship entering hyperdrive, stars streaking past as it accelerates.
                     </div>
                 </div>
                 
                 <div class="video-item">
                     <video controls>
-                        <source src="videos/vista_spaceship.mp4" type="video/mp4">
+                        <source src="videos/vista_spaceship.mp4?v=1760601326" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
                     <div class="video-caption">
-                        <strong>VISTA:</strong> "Spaceship"
+                        <strong>VISTA (Ours):</strong> 
+                        <span id="short-prompt">Create an 8-second, live-action, realistic sci-fi action video. The sequence initiates with a medium shot of a sleek, advanced spaceship...</span>
+                        <span id="full-prompt" style="display: none;">Create an 8-second, live-action, realistic sci-fi action video. The sequence initiates with a medium shot of a sleek, advanced spaceship, its engines beginning with a subtle glow that gradually intensifies, set against a vast, static starfield. This cosmic backdrop features diverse star densities, a distant, subtle galaxy arm, and a very subtle parallax effect to enhance depth perception. An ambient space hum is faintly audible. As the ship commences acceleration, the camera smoothly tracks its motion from a slightly elevated, rearward perspective. This acceleration is a deliberate, gradual build-up over the initial seconds, allowing the surrounding stars to dramatically streak, vividly conveying escalating speed. Precisely at the 4.5-second mark, the hyperdrive engages. The camera swiftly retreats and zooms out, maintaining the accelerating vessel in sharp focus while highlighting the intense, tunnel-like streaking of stars. Dynamic lighting on the ship subtly reacts to the intense streaking. A perceptible but minimal camera shake or vibration is present during the hyperdrive's most intense phase, contributing to tactile realism. The hyperdrive audio includes a distinct low-frequency rumble and a rich, layered texture, with enhanced sonic complexity during the sustained phase for maximum immersion. The video concludes with the spaceship fully enveloped in the brilliant hyperdrive effect, which then begins its smooth stabilization and gentle dissipation immediately after its peak intensity, ensuring this process is clearly visible and progressing towards a natural and seamless conclusion by the 8-second mark. The video must be free of text overlays and human narration.</span>
+                        <br><button onclick="togglePrompt()" id="toggle-btn" style="background: none; border: none; color: #1f77b4; cursor: pointer; text-decoration: underline; font-size: 0.9em; margin-top: 5px;">Show full prompt</button>
+                    </div>
+
+                    <script>
+                    function togglePrompt() {
+                        const shortPrompt = document.getElementById('short-prompt');
+                        const fullPrompt = document.getElementById('full-prompt');
+                        const toggleBtn = document.getElementById('toggle-btn');
+                        
+                        if (fullPrompt.style.display === 'none') {
+                            shortPrompt.style.display = 'none';
+                            fullPrompt.style.display = 'inline';
+                            toggleBtn.textContent = 'Show less';
+                        } else {
+                            shortPrompt.style.display = 'inline';
+                            fullPrompt.style.display = 'none';
+                            toggleBtn.textContent = 'Show full prompt';
+                        }
+                    }
+                    
+                    function togglePromptGeneric(button) {
+                        const caption = button.parentElement;
+                        const shortPrompt = caption.querySelector('.short-prompt');
+                        const fullPrompt = caption.querySelector('.full-prompt');
+                        
+                        if (fullPrompt.style.display === 'none') {
+                            shortPrompt.style.display = 'none';
+                            fullPrompt.style.display = 'inline';
+                            button.textContent = 'Show less';
+                        } else {
+                            shortPrompt.style.display = 'inline';
+                            fullPrompt.style.display = 'none';
+                            button.textContent = 'Show full prompt';
+                        }
+                    }
+                    </script>
+                </div>
+                
+                <div class="video-item">
+                    <video controls>
+                        <source src="videos/dp_beautyvlog.mp4?v=1760601326" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="video-caption">
+                        <strong>Direct Prompting (Original Prompt):</strong> A single ice cube placed in a warm drink, slowly melting and sending gentle ripples through the liquid as it transforms.
                     </div>
                 </div>
                 
                 <div class="video-item">
                     <video controls>
-                        <source src="videos/dp_beautyvlog.mp4" type="video/mp4">
+                        <source src="videos/vista_beautyvlog.mp4?v=1760601326" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
                     <div class="video-caption">
-                        <strong>Direct Prompting (DP):</strong> "Beauty vlog"
+                        <strong>VISTA (Ours):</strong> 
+                        <span class="short-prompt">**Video Production Brief: Melting Ice Cube (8 Seconds)** - To create an 8-second video illustrating the User Prompt: "A single ice cube placed in a warm drink, slowly melting and sending gentle ripples through the liquid as it transforms."...</span>
+                        <span class="full-prompt" style="display: none;">**Video Production Brief: Melting Ice Cube (8 Seconds)**
+
+    **Objective:** To create an 8-second video illustrating the User Prompt: "A single ice cube placed in a warm drink, slowly melting and sending gentle ripples through the liquid as it transforms."
+
+    **Core Concept & Visuals:**
+    The video will be a singular, continuous close-up observation (0s-8s). The setting is an elegant, clear glass filled with a warm, inviting amber-toned liquid, potentially emitting a subtle wisp of steam. The background should be softly blurred and warm-toned (e.g., a wooden surface or cozy interior), ensuring the primary focus remains on the liquid and the ice.
+    A pristine, translucent ice cube, initially solid and angular, is to be gently introduced into the warm liquid. Upon immersion, it must visibly begin to melt and diminish in size. This melting process will generate delicate, concentric ripples that gracefully spread outwards across the liquid's surface from the point where the ice cube makes contact. The ice cube acts as the initiator of change and transformation, while the warm drink serves as the reactive medium.
+
+    **Audio Specifications:**
+    The sound design should be subtle and natural:
+    - A soft, distinct 'clink' as the ice cube touches the glass.
+    - A very subtle, almost imperceptible 'fizz' or 'crackle' as melting begins.
+    - Gentle, natural 'sloshing' or 'lapping' sounds accompanying the expanding ripples.
+    - A low, ambient hum conveying warmth (e.g., distant gentle kitchen sounds or a subtle, comforting room tone).
+
+    **Cinematography:**
+    The camera will start with a medium close-up, positioned slightly above the glass rim to capture the ice cube's introduction. A smooth, seamless transition will then occur to a tight, static macro shot. This macro shot will precisely focus on the ice cube's point of contact with the liquid and the immediate area where ripples form and spread, emphasizing the subtle movements and transformations.
+
+    **Atmosphere:**
+    The desired emotional tone is serene, contemplative, mesmerizing, and tranquil.
+
+    **Technical Directives:**
+    - The video must adhere to real-world physics; no cartoon or animated elements unless explicitly specified in the User Prompt.
+    - No multiple scene transitions are permitted, other than the single specified camera movement.
+    - No on-screen captions or subtitles.
+    - No human voice-over, unless the overarching message explicitly demands it.
+    - The video must commence smoothly, avoiding any abrupt or jarring openings.
+    - The ending must be complete and polished, with all actions fully delivered, avoiding sudden or unfinished cuts.</span>
+                        <br><button onclick="togglePromptGeneric(this)" class="toggle-btn" style="background: none; border: none; color: #1f77b4; cursor: pointer; text-decoration: underline; font-size: 0.9em; margin-top: 5px;">Show full prompt</button>
                     </div>
                 </div>
                 
                 <div class="video-item">
                     <video controls>
-                        <source src="videos/vista_beautyvlog.mp4" type="video/mp4">
+                        <source src="videos/dp_icecream.mp4?v=1760601326" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
                     <div class="video-caption">
-                        <strong>VISTA:</strong> "Beauty vlog"
+                        <strong>Direct Prompting (Original Prompt):</strong> 
+                        <span class="short-prompt">The video is an educational animation designed for young children, teaching compound words through a visual and auditory puzzle format...</span>
+                        <span class="full-prompt" style="display: none;">{'overall_content': 'The video is an educational animation designed for young children, teaching compound words through a visual and auditory puzzle format. Each segment presents two individual words with corresponding cartoon images, which then combine to form a new compound word with a new image, all while a cheerful cartoon cat bounces at the bottom of the screen.', 'theme': 'The central theme is early childhood education, specifically focusing on vocabulary building and the concept of compound words in an engaging and interactive manner.', 'tone': "The overall tone is cheerful, educational, and highly engaging, designed to capture and maintain a child's attention with bright colors, simple animations, and a friendly voiceover.", 'scenes': [{'timestamp': '0-2.9', 'duration_seconds': 2.9, 'scene_type': 'Educational Word Puzzle: Ice Cream', 'characters': 'A cute, orange, cartoon cat with large eyes, rosy cheeks, and wearing red polka-dotted overalls, continuously bounces and sways at the bottom of the screen.', 'actions': "The scene begins with the word 'Ice' and an image of a blue ice cube appearing in a pink-framed white board at the top. A plus sign appears next to it. Then, the word 'Cream' and an image of a pink and yellow ice cream swirl appear. Finally, the two words and images merge to form 'Icecream' with an image of a pink ice cream cone. The cat character bounces rhythmically throughout.", 'dialogues': "A clear, enthusiastic voiceover pronounces: 'Ice', 'Cream', 'Icecream'.", 'visual_environment': 'The background is a vibrant sky blue, adorned with sparkling white star shapes that subtly twinkle. The main visual focus is a large, rectangular white board with a thick pink border, positioned at the top of the screen.', 'camera': 'Static shot, focusing on the top board and the bouncing cat. Elements within the board appear and disappear with quick cuts.', 'sounds': "Upbeat, cheerful background music plays continuously. A 'pop' sound effect accompanies the appearance of each word/image, and a 'ding' sound effect signifies the successful formation of the compound word. The voiceover is prominent.", 'moods': 'Joyful, educational, and stimulating.'}, {'timestamp': '2.9-5.8', 'duration_seconds': 2.9, 'scene_type': 'Educational Word Puzzle: Snowman', 'characters': 'The same cheerful, orange cartoon cat continues to bounce and sway at the bottom of the screen.', 'actions': "The background transitions from blue to a bright pink. The word 'Snow' and a blue snowflake appear in the top board, followed by a plus sign. Then, the word 'Man' and an image of a cartoon man (similar to the cat character but with human features and a shirt/tie) appear. These elements then combine to form 'Snowman' with an image of a classic snowman with a blue scarf and carrot nose. The cat maintains its rhythmic bouncing.", 'dialogues': "The voiceover pronounces: 'Snow', 'Man', 'Snowman'.", 'visual_environment': 'The background shifts to a bright, solid pink, still featuring the twinkling white stars. The pink-framed white board remains at the top.', 'camera': 'Static shot, with elements appearing and transforming within the frame.', 'sounds': "The cheerful background music continues. 'Pop' sound effects for new elements, 'ding' for the compound word, and the clear voiceover.", 'moods': 'Engaging, playful, and informative.'}, {'timestamp': '5.8-8.8', 'duration_seconds': 3.0, 'scene_type': 'Educational Word Puzzle: Popcorn', 'characters': 'The consistent orange cartoon cat continues its lively bouncing.', 'actions': "The background changes to a vivid green. The word 'Pop' and a colorful circular pop-it toy appear in the top board, followed by a plus sign. Next, the word 'Corn' and an image of three yellow corn cobs appear. These then merge to display 'Popcorn' with an image of a striped bucket filled with popcorn. The cat's bouncing is synchronized with the music.", 'dialogues': "The voiceover states: 'Pop', 'Corn', 'Popcorn'.", 'visual_environment': 'The background is now a bright green, maintaining the twinkling white stars. The pink-framed white board is still the central display area.', 'camera': 'Static, with dynamic content changes within the board.', 'sounds': "Continuous cheerful music, 'pop' and 'ding' sound effects, and the voiceover.", 'moods': 'Lively, educational, and fun.'}]}</span>
+                        <br><button onclick="togglePromptGeneric(this)" class="toggle-btn" style="background: none; border: none; color: #1f77b4; cursor: pointer; text-decoration: underline; font-size: 0.9em; margin-top: 5px;">Show full prompt</button>
                     </div>
                 </div>
                 
                 <div class="video-item">
                     <video controls>
-                        <source src="videos/dp_icecream.mp4" type="video/mp4">
+                        <source src="videos/vista_icecream.mp4?v=1760601326" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
                     <div class="video-caption">
-                        <strong>Direct Prompting (DP):</strong> "Ice cream"
+                        <strong>VISTA (Ours):</strong> 
+                        <span class="short-prompt">Create an 8-second animated educational video for young children, designed as an engaging visual and auditory puzzle to teach compound words...</span>
+                        <span class="full-prompt" style="display: none;">Create an 8-second animated educational video for young children, designed as an engaging visual and auditory puzzle to teach compound words. The core mechanism involves clearly presenting two individual words, each with its unique cartoon image, before they smoothly combine into a new compound word accompanied by its own distinct image. Throughout the video, a cheerful orange cartoon cat, characterized by large eyes, rosy cheeks, and red polka-dotted overalls, consistently bounces at the screen's bottom. The scene opens with a static shot of a pink-framed white board set against a vibrant sky blue background adorned with twinkling white stars. For the initial 2.9 seconds, 'Ice' and a blue ice cube gracefully appear on the board, followed by a smoothly scaling plus sign. Subsequently, 'Cream' and a pink and yellow ice cream swirl fluidly emerge. These elements then gently transform and merge to reveal 'Icecream' alongside a pink ice cream cone. An enthusiastic voiceover pronounces 'Ice', 'Cream', 'Icecream', complemented by upbeat music, 'pop' sound effects for new elements, and a 'ding' for the successful compound word. From 2.9 to 5.8 seconds, the background transitions to a bright pink. The puzzle continues as 'Snow' and a blue snowflake fluidly appear, followed by a scaling plus sign. Next, 'Man' and a cartoon man (resembling the cat but with human features and a shirt/tie) fluidly emerge. These seamlessly combine with a gentle transformation to form 'Snowman' with a classic snowman image. The voiceover guides with 'Snow', 'Man', 'Snowman', maintaining the cheerful music and sound effects. The final 3 seconds (5.8-8.8s) feature a vivid green background. 'Pop' and a colorful circular pop-it toy fluidly appear, followed by a scaling plus sign. Then, 'Corn' and three yellow corn cobs fluidly emerge. These elements, 'Pop' with its toy and 'Corn' with its cobs, seamlessly merge and gently transform into 'Popcorn' with a striped bucket of popcorn. The voiceover concludes with 'Pop', 'Corn', 'Popcorn'. The camera remains static, ensuring focus on the dynamic board content and the ever-present cat, delivering a lively, educational, and fun experience.</span>
+                        <br><button onclick="togglePromptGeneric(this)" class="toggle-btn" style="background: none; border: none; color: #1f77b4; cursor: pointer; text-decoration: underline; font-size: 0.9em; margin-top: 5px;">Show full prompt</button>
                     </div>
                 </div>
                 
                 <div class="video-item">
                     <video controls>
-                        <source src="videos/vista_icecream.mp4" type="video/mp4">
+                        <source src="videos/dp_jeffdye.mp4?v=1760601326" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
                     <div class="video-caption">
-                        <strong>VISTA:</strong> "Ice cream"
+                        <strong>Direct Prompting (Original Prompt):</strong> 
+                        <span class="short-prompt">An 8-second video begins outdoors on a bright, sunny day. A bearded man in a red cap, blue-tinted sunglasses, purple hoodie, and black headphones addresses the camera...</span>
+                        <span class="full-prompt" style="display: none;">An 8-second video begins outdoors on a bright, sunny day. A bearded man in a red cap, blue-tinted sunglasses, purple hoodie, and black headphones addresses the camera in a static, chest-up shot. The suburban street background is softly blurred, showing houses and greenery under a clear blue sky. His voice is clear as he poses the question "Which comedian is known for their deadpan delivery?" A black text box with white lettering appears at the bottom displaying the question. After a pause, he states "Jeff Dye" with a knowing smile. The text smoothly transitions to show "JEFF 'DYE'". At 5.5 seconds, the video fades to a minimalist white outro featuring "Master of Puns" text with a 3D glasses emoji above a "SUBSCRIBE!" button. A crisp pop sound concludes the video.</span>
+                        <br><button onclick="togglePromptGeneric(this)" class="toggle-btn" style="background: none; border: none; color: #1f77b4; cursor: pointer; text-decoration: underline; font-size: 0.9em; margin-top: 5px;">Show full prompt</button>
                     </div>
                 </div>
                 
                 <div class="video-item">
                     <video controls>
-                        <source src="videos/dp_jeffdye.mp4" type="video/mp4">
+                        <source src="videos/vista_jeffdye.mp4?v=1760601326" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
                     <div class="video-caption">
-                        <strong>Direct Prompting (DP):</strong> "Jeff Dye"
+                        <strong>VISTA (Ours):</strong> 
+                        <span class="short-prompt">The 8-second video opens outdoors on a vibrant, sunlit day. For the initial 5.5 seconds, the camera presents a static, chest-up, eye-level view of a man...</span>
+                        <span class="full-prompt" style="display: none;">{'prompt_name': "Trivia Master's Outdoor Riddle", 'prompt_description': 'The 8-second video opens outdoors on a vibrant, sunlit day. For the initial 5.5 seconds, the camera presents a static, chest-up, eye-level view of a man. The composition is artfully balanced, utilizing the shallow depth of field to enhance the subject\'s presence and create a visually engaging frame. He sports a full beard, a red baseball cap, black sunglasses with striking blue reflective lenses, a purple hoodie, and black over-ear headphones. Behind him, a gently blurred scene of a serene suburban street, complete with residential homes and abundant green foliage, stretches beneath a clear, light blue sky. The bright, sunny outdoor setting is bathed in a warm, inviting light, creating a subtly cinematic atmosphere. The reflections in his sunglasses are impeccably clean, free of any camera equipment or unwanted details, preserving visual immersion.\n\nA clear, warm, and resonant male voice speaks directly to the viewer. Faint, yet subtly varied, ambient street noise, including distant traffic and occasional natural outdoor sounds (e.g., a faint bird chirp or rustle of leaves), is audible in the background, adding to the immersive realism. The man asks, "Which comedian is known for their deadpan delivery?" Simultaneously, a sleek, black rectangular text box with white lettering gracefully emerges from the bottom, positioned subtly at the screen\'s center-bottom, displaying "WHICH COMEDIAN IS KNOWN FOR THEIR DEADPAN DELIVERY?". After a brief, expectant pause, he declares, "Jeff Dye." The text overlay then smoothly shifts: the question fades out as "JEFF \"DYE\"" fades in, maintaining its discreet size and placement. A subtle, knowing smile plays on his lips as he finishes.\n\nAt the 5.5-second mark, the video transitions from the live-action segment to the outro, marked by a quick fade to black followed by a fade in. The final 2.5 seconds showcase a pristine, minimalist white background. "Master of Puns" in black text, accompanied by a colorful 3D glasses emoji, is centered above a black rectangular "SUBSCRIBE!" button with a subtle grey border. A crisp \'pop\' sound effect signals the video\'s conclusion.'}</span>
+                        <br><button onclick="togglePromptGeneric(this)" class="toggle-btn" style="background: none; border: none; color: #1f77b4; cursor: pointer; text-decoration: underline; font-size: 0.9em; margin-top: 5px;">Show full prompt</button>
                     </div>
                 </div>
                 
                 <div class="video-item">
                     <video controls>
-                        <source src="videos/vista_jeffdye.mp4" type="video/mp4">
+                        <source src="videos/dp_trees.mp4?v=1760601326" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
                     <div class="video-caption">
-                        <strong>VISTA:</strong> "Jeff Dye"
+                        <strong>Direct Prompting (Original Prompt):</strong> An aerial view of a lush, green forest with a river winding through it, highlighting the contrast between the dense foliage and the clear water.
                     </div>
                 </div>
                 
                 <div class="video-item">
                     <video controls>
-                        <source src="videos/dp_trees.mp4" type="video/mp4">
+                        <source src="videos/vista_trees.mp4?v=1760601326" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
                     <div class="video-caption">
-                        <strong>Direct Prompting (DP):</strong> "Trees"
+                        <strong>VISTA (Ours):</strong> 
+                        <span class="short-prompt">Produce an 8-second establishing shot video centered on an aerial view of a lush, green forest traversed by a winding river...</span>
+                        <span class="full-prompt" style="display: none;">Produce an 8-second establishing shot video centered on an aerial view of a lush, green forest traversed by a winding river, specifically highlighting the contrast between the dense foliage and the clear water. The video should open with a high aerial shot of an expansive, verdant forest under late afternoon sunlight, revealing a broad, meandering river. Subsequently, the camera should smoothly descend and follow a winding segment of the river, emphasizing the crystal-clear water against the deep green foliage. This movement should showcase the river's serpentine course and the visual separation between the vibrant forest and the reflective water, occasionally exposing river stones. For audio, include an immersive forest soundscape with bird calls and rustling leaves. Crucially, incorporate prominent, dynamically spatialized flowing water sounds that realistically adjust in proximity and direction with the camera's movement to enhance the sense of depth.</span>
+                        <br><button onclick="togglePromptGeneric(this)" class="toggle-btn" style="background: none; border: none; color: #1f77b4; cursor: pointer; text-decoration: underline; font-size: 0.9em; margin-top: 5px;">Show full prompt</button>
                     </div>
                 </div>
                 
                 <div class="video-item">
                     <video controls>
-                        <source src="videos/vista_trees.mp4" type="video/mp4">
+                        <source src="videos/dp_sadnews.mp4?v=1760601326" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
                     <div class="video-caption">
-                        <strong>VISTA:</strong> "Trees"
+                        <strong>Direct Prompting (Original Prompt):</strong> The person's forehead creased with worry as he listened to bad news.
                     </div>
                 </div>
                 
                 <div class="video-item">
                     <video controls>
-                        <source src="videos/dp_sadnews.mp4" type="video/mp4">
+                        <source src="videos/vista_badcalls.mp4?v=1760601326" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
                     <div class="video-caption">
-                        <strong>Direct Prompting (DP):</strong> "Sad news"
+                        <strong>VISTA (Ours):</strong> 
+                        <span class="short-prompt">Generate an 8-second photorealistic video depicting a man's intense emotional reaction upon hearing distressing news. The video commences with a medium shot...</span>
+                        <span class="full-prompt" style="display: none;">Generate an 8-second photorealistic video depicting a man's intense emotional reaction upon hearing distressing news. The video commences with a medium shot of the man in a dimly lit, slightly disheveled home office. He is seated at a desk, his back partially turned, a phone held firmly to his ear. A slow camera arc reveals his profile, then a gentle push-in brings the viewer to a close-up. His expression subtly shifts from focused attention to profound worry, culminating in a deeply furrowed brow as the gravity of the news registers. For the entire 8-second duration, the phone remains perfectly still and pressed against his ear, serving as a silent, unmoving conduit of distress, visually static without any shifts or adjustments. The overall tone should be anxious, somber, and heavy. The sound design should be subtle and natural, primarily featuring the hushed ambient sounds of the quiet, enclosed home office. A very faint, almost imperceptible, low-frequency electronic hum should consistently emanate from the phone. Subtle environmental sounds, such as soft paper rustles or faint creaks, should enhance the sense of place without becoming distracting. The character's deep, distressed breath and a soft sigh must be clear, well-recorded, and precisely synchronized with his visual reaction. Subtle room acoustics, including a faint natural reverb, should effectively convey the enclosed nature of the space. All audio elements must be understated, enhancing emotional impact without distraction. Crucially, no sounds related to phone handling or movement are permitted. The video must adhere to real-world physics, contain no scene changes or cuts, and be devoid of captions, textual overlays, or spoken dialogue. It requires a smooth, gentle opening and a polished, complete conclusion.</span>
+                        <br><button onclick="togglePromptGeneric(this)" class="toggle-btn" style="background: none; border: none; color: #1f77b4; cursor: pointer; text-decoration: underline; font-size: 0.9em; margin-top: 5px;">Show full prompt</button>
                     </div>
                 </div>
                 
                 <div class="video-item">
                     <video controls>
-                        <source src="videos/vista_badcalls.mp4" type="video/mp4">
+                        <source src="videos/dp_animation.mp4?v=1760601326" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
                     <div class="video-caption">
-                        <strong>VISTA:</strong> "Bad calls"
+                        <strong>Direct Prompting (Original Prompt):</strong> 
+                        <span class="short-prompt">Craft an 8-second video showcasing the unbridled joy of children at play in a supermarket environment. A grey shopping cart holds a mischievous toddler...</span>
+                        <span class="full-prompt" style="display: none;">Craft an 8-second video showcasing the unbridled joy of children at play in a supermarket environment. A grey shopping cart holds a mischievous toddler, identifiable by a patterned jacket, blue pants, and red Mickey Mouse shoes. This toddler engages in a repetitive game, dropping a bright red box onto the grey tiled floor, each drop producing a clear 'thud'. An older girl, with long dark hair and a light-colored top, kneels nearby, demonstrating remarkable patience and playfulness as she consistently retrieves and returns the box. This interaction fuels the toddler's escalating delight, transforming soft giggles into booming, infectious laughter. The video is to be shot from a perfectly static, fixed low-angle camera, with no movement or shake, ensuring both children and the falling box are naturally framed. The older girl shares a warm, direct smile with the camera at a pivotal moment. The scene concludes with the toddler's triumphant, open-mouthed laughter, their face beaming with pure happiness as they look directly into the lens. Sound design is crucial, emphasizing the rhythmic 'thuds' and the children's contagious laughter, subtly layered with a faint, amused adult voice and the authentic hum and distant sounds of a busy supermarket. The overall effect should be a heartwarming and amusing vignette of innocent fun.</span>
+                        <br><button onclick="togglePromptGeneric(this)" class="toggle-btn" style="background: none; border: none; color: #1f77b4; cursor: pointer; text-decoration: underline; font-size: 0.9em; margin-top: 5px;">Show full prompt</button>
+                    </div>
+                </div>
+                
+                <div class="video-item">
+                    <video controls>
+                        <source src="videos/vista_animation.mp4?v=1760601326" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="video-caption">
+                        <strong>VISTA (Ours):</strong> 
+                        <span class="short-prompt">From the comprehensive JSON video script, specific directives, and general constraints detailed below, create an 8-second video. The video captures a heartwarming and amusing interaction between a toddler seated in a shopping cart...</span>
+                        <span class="full-prompt" style="display: none;">From the comprehensive JSON video script, specific directives, and general constraints detailed below, create an 8-second video.
+
+**Video Script (JSON Format):**
+{'overall_content': 'The video captures a heartwarming and amusing interaction between a toddler seated in a shopping cart and an older child in a supermarket aisle. The toddler repeatedly drops a red box onto the floor, and the older child patiently and playfully picks it up and returns it, creating a loop of innocent fun and laughter.', 'theme': 'The central theme is the simple joy found in repetitive play, sibling interaction, and the infectious happiness of young children.', 'tone': 'The overall tone is joyful, lighthearted, and amusing, filled with the innocent delight of childhood play.', 'scenes': [{'timestamp': '0-1.5', 'duration_seconds': 1.5, 'scene_type': 'Playful drop and retrieve in a supermarket aisle', 'characters': 'A young toddler (likely a boy) with dark hair, wearing a patterned jacket, blue pants, red Mickey Mouse shoes, and striped socks, is seated in a grey shopping cart. An older child (a girl) with long dark hair, wearing a light-colored top, is on the floor. A partially visible adult is in the background.', 'actions': 'The toddler, with a mischievous grin, holds a red rectangular box and deliberately drops it onto the grey tiled floor. The box tumbles and lands with a soft thud. The older child quickly bends down to pick up the fallen box.', 'dialogues': "A distinct 'thud' sound as the box hits the floor. The toddler lets out a short, joyful vocalization.", 'visual_environment': 'The scene is set in a brightly lit supermarket aisle. Tall metal shelves filled with various products, including cleaning supplies and household items, line both sides of the aisle. The floor is light grey tile. The shopping cart is grey metal with a green handle.', 'camera': "The camera is held at a slightly low angle, focusing on the toddler in the shopping cart and the floor directly in front of it. It's a mostly static shot, capturing the action clearly, though with slight handheld movement.", 'sounds': "The primary sound is the 'thud' of the box, accompanied by the toddler's soft vocalizations. Faint ambient supermarket sounds are present.", 'moods': 'Amused, playful, innocent.'}, {'timestamp': '1.5-3.5', 'duration_seconds': 2.0, 'scene_type': 'Repetitive playful interaction', 'characters': 'The same toddler is still seated in the shopping cart, now holding the red box again. The older child is seen handing the box back to the toddler and then looking up at them.', 'actions': 'The toddler, with an even wider smile, immediately drops the red box again, watching it fall. The older child, having just returned the box, bends down once more to retrieve it. The toddler looks down at the older child, anticipating the pick-up.', 'dialogues': "Another clear 'thud' as the box lands. The toddler emits a louder, more excited giggle.", 'visual_environment': 'The supermarket aisle remains the same, with shelves of products visible. The bright fluorescent lighting illuminates the scene.', 'camera': 'The camera maintains its slightly low-angle position, with a slight, natural shake from being handheld, keeping the toddler and the immediate floor area in focus.', 'sounds': "The sound of the falling box and the toddler's infectious laughter are prominent. Background chatter and ambient supermarket noise continue.", 'moods': 'Joyful, repetitive, amusing.'}, {'timestamp': '3.5-5.5', 'duration_seconds': 2.0, 'scene_type': 'Continued playful loop with a smile', 'characters': 'The toddler is still in the cart, holding the box. The older child is now on the floor, having just picked up the box, and looks towards the camera with a bright smile.', 'actions': 'The older child, having just picked up the box, turns their head towards the camera and smiles broadly, acknowledging the playful situation. Shortly after, the toddler, with a look of pure delight, drops the red box for the third time.', 'dialogues': "The distinct 'thud' of the box is heard. The toddler's laughter is continuous and infectious. An adult voice can be heard saying 'Oh my god'.", 'visual_environment': "The supermarket setting is consistent, with shelves of products and the tiled floor. The lighting remains bright. The older child's direct gaze and smile towards the camera add a personal touch and are a key visual cue of the positive mood.", 'camera': 'The camera remains mostly static and low-angled, capturing the full interaction.', 'sounds': "The sound of the falling box and the toddler's joyful laughter dominate the audio.", 'moods': 'Happy, engaging, lighthearted.'}, {'timestamp': '5.5-7.5', 'duration_seconds': 2.0, 'scene_type': 'Final drop and triumphant laughter', 'characters': 'The toddler is still in the shopping cart, now laughing heartily. The older child is seen picking up the box one last time.', 'actions': 'The toddler drops the red box for the fourth time, this time with an even more pronounced, open-mouthed laugh. The older child bends down to pick it up. The toddler looks directly at the camera, beaming with pure joy.', 'dialogues': "The final 'thud' of the box. The toddler's loud, uninhibited, and infectious laughter fills the audio, clearly the highlight of the scene.", 'visual_environment': "The supermarket aisle, shelves, and lighting are unchanged. The focus remains on the children's interaction.", 'camera': "The camera maintains its mostly static, low-angle shot, perfectly framing the toddler's joyful expression and the repetitive action. The shot ends with the toddler's face full of laughter.", 'sounds': "The most prominent sound is the toddler's loud, joyful laughter, which is highly contagious. The 'thud' of the box is also present.", 'moods': 'Exuberant, joyful, triumphant, highly amusing.'}]
+
+**Specific Directives for Video Generation:**
+**[5.5s–7.5s]**:
+   - **Scene type**: Final drop and triumphant laughter
+   - **Camera Focus**: Maintains its mostly static, low-angle shot, perfectly framing the toddler's joyful expression and the repetitive action. The shot ends with the toddler's face full of laughter.
+
+**General Constraints for Video Output**:
+- The video must be non-cartoon obeying real-world physics, unless the User Prompt explicitly specifies it is cartoon/animated.
+- Do **not** generate the video with multiple scene transitions, unless the Video Details have multiple transitions.
+- Do **not** include any captions or subtitles.
+- Do **not** generate any human voice-over unless the overall message explicitly requires.
+- The video must begin smoothly—no abrupt or jarring openings.
+- The ending must be complete and polished, with all character dialogue and actions fully delivered. Avoid any sudden or unfinished cuts.</span>
+                        <br><button onclick="togglePromptGeneric(this)" class="toggle-btn" style="background: none; border: none; color: #1f77b4; cursor: pointer; text-decoration: underline; font-size: 0.9em; margin-top: 5px;">Show full prompt</button>
+                    </div>
+                </div>
+                
+                <div class="video-item">
+                    <video controls>
+                        <source src="videos/dp_running.mp4?v=1760601326" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="video-caption">
+                        <strong>Direct Prompting (Original Prompt):</strong> A couple runs through a sudden downpour, laughing and splashing in puddles as they try to find shelter.
+                    </div>
+                </div>
+                
+                <div class="video-item">
+                    <video controls>
+                        <source src="videos/vista_running.mp4?v=1760601326" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="video-caption">
+                        <strong>VISTA (Ours):</strong> 
+                        <span class="short-prompt">Produce an 8-second live-action video depicting the scenario: "A couple runs through a sudden downpour, laughing and splashing in puddles as they try to find shelter."...</span>
+                        <span class="full-prompt" style="display: none;">Produce an 8-second live-action video depicting the scenario: "A couple runs through a sudden downpour, laughing and splashing in puddles as they try to find shelter."
+
+Video Specifications:
+**[0s–8s]**:
+   - **Scene type**: Live-action
+   - **Camera Movement**: Throughout the 8-second duration, the camera should initially capture a medium, slightly low-angle shot, tracking the couple as they approach, emphasizing their splashing feet and joyful expressions. As they pass, the camera should subtly pan to maintain focus on their faces. Incorporate a subtle handheld feel for naturalism. The shot should conclude by widening as they run into the distance, still laughing.
+
+Requirements:
+- The content must be non-cartoon and adhere to real-world physics, unless otherwise specified in the user prompt.
+- Do not include multiple scene transitions unless explicitly outlined in the Video Specifications.
+- Subtitles and captions are prohibited.
+- Human voice-over is not permitted unless the overall message necessitates it.
+- The video must have a smooth opening and a complete, refined ending, ensuring all character actions and dialogue are fully delivered.</span>
+                        <br><button onclick="togglePromptGeneric(this)" class="toggle-btn" style="background: none; border: none; color: #1f77b4; cursor: pointer; text-decoration: underline; font-size: 0.9em; margin-top: 5px;">Show full prompt</button>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="citation">
-            <h3>Citation</h3>
-            <pre>@article{long2025vista,
+        <div class="video-section">
+            <h2>Citation</h2>
+            <p>If you find our work useful, please consider citing:</p>
+            <pre style="background-color: #f1f1f1; padding: 20px; border-radius: 5px; text-align: left; overflow-x: auto;">@article{long2025vista,
   title={VISTA: A Test-Time Self-Improving Video Generation Agent},
-  author={Long, Do Xuan and Wan, Xingchen and Nakhost, Hootan and Lee, Chen-Yu and Pfister, Tomas and Ar{\i}k, Sercan {\"O}.},
-  journal={arXiv preprint arXiv:XXXX.XXXXX},
-  year={2025}
+  author={Long, Do Xuan and Wan, Xingchen and Nakhost, Hootan and Lee, Chen-Yu and Pfister, Tomas and Arik, Sercan O},
+  journal={arXiv preprint arXiv:2510.15831},
+  year={2025},
+  url={https://arxiv.org/abs/2510.15831}
 }</pre>
+            <p>We acknowledge some of the prompts above being from <a href="https://huggingface.co/datasets/meta-ai-for-media-research/movie_gen_video_bench" target="_blank" style="color: #1f77b4; text-decoration: none;">MovieGenVideo (Meta)</a>.</p>
         </div>
+    </div>
+
+    <div style="text-align: center; margin: 40px 0; padding: 20px; border-top: 1px solid #eee; color: #666;">
+        <p>This website is licensed under a <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" style="color: #1f77b4; text-decoration: none;">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>
     </div>
 </body>
 </html>
